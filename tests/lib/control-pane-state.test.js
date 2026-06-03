@@ -227,6 +227,7 @@ async function writeSampleEcc2Database(dbPath) {
   db.close();
 }
 
+<<<<<<< HEAD
 async function writeSampleWorkItemsDatabase(dbPath) {
   const SQL = await initSqlJs();
   const db = new SQL.Database();
@@ -317,6 +318,8 @@ async function writeSampleWorkItemsDatabase(dbPath) {
   db.close();
 }
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
 async function mutateSqlDatabase(dbPath, mutator) {
   const SQL = await initSqlJs();
   const buffer = fs.readFileSync(dbPath);
@@ -380,6 +383,7 @@ async function runTests() {
     }
   })) passed++; else failed++;
 
+<<<<<<< HEAD
   if (await test('projects state-store work items into agent Kanban summary', async () => {
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ecc-control-pane-work-items-'));
     const dbPath = path.join(tempDir, 'ecc2.db');
@@ -438,6 +442,8 @@ async function runTests() {
     }
   })) passed++; else failed++;
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
   if (await test('resolves config from explicit db path and TOML connector file', async () => {
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ecc-control-pane-config-'));
     const dbPath = path.join(tempDir, 'state.db');

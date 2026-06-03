@@ -10,7 +10,10 @@ const toml = require('@iarna/toml');
 const { buildControlPaneActions } = require('./actions');
 
 const SNAPSHOT_SCHEMA_VERSION = 'ecc.control-pane.snapshot.v1';
+<<<<<<< HEAD
 const DEFAULT_STATE_STORE_RELATIVE_PATH = path.join('.claude', 'ecc', 'state.db');
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
 
 function homeDir(env = process.env) {
   return env.HOME || env.USERPROFILE || os.homedir() || '.';
@@ -20,10 +23,13 @@ function defaultDbPath(env = process.env) {
   return path.join(homeDir(env), '.claude', 'ecc2.db');
 }
 
+<<<<<<< HEAD
 function defaultStateDbPath(env = process.env) {
   return path.join(homeDir(env), DEFAULT_STATE_STORE_RELATIVE_PATH);
 }
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
 function defaultConfigPaths(cwd = process.cwd(), env = process.env) {
   const home = homeDir(env);
   const paths = [
@@ -80,6 +86,7 @@ function normalizeMemoryConnectors(connectors = {}) {
 }
 
 function normalizeConfig(rawConfig = {}, options = {}) {
+<<<<<<< HEAD
   const {
     memory_connectors: snakeMemoryConnectors,
     memoryConnectors,
@@ -87,15 +94,21 @@ function normalizeConfig(rawConfig = {}, options = {}) {
     stateDbPath: camelStateDbPath,
     ...rest
   } = rawConfig;
+=======
+  const { memory_connectors: snakeMemoryConnectors, memoryConnectors, ...rest } = rawConfig;
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
   const normalized = normalizeObjectKeys(rest);
   const connectorConfig = memoryConnectors || snakeMemoryConnectors || normalized.memoryConnectors;
   return {
     dbPath: options.dbPath || normalized.dbPath || defaultDbPath(options.env),
+<<<<<<< HEAD
     stateDbPath: options.stateDbPath
       || camelStateDbPath
       || snakeStateDbPath
       || normalized.stateDbPath
       || defaultStateDbPath(options.env),
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     memoryConnectors: normalizeMemoryConnectors(connectorConfig),
   };
 }
@@ -123,7 +136,10 @@ function resolveControlPaneConfig(options = {}) {
     ...normalizeConfig(merged, {
       env,
       dbPath: options.dbPath || env.ECC2_DB_PATH || null,
+<<<<<<< HEAD
       stateDbPath: options.stateDbPath || env.ECC_STATE_DB_PATH || null,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     }),
     configPaths: configPaths.filter(configPath => fs.existsSync(configPath)),
   };
@@ -454,6 +470,7 @@ function connectorStatus(config, db) {
     });
 }
 
+<<<<<<< HEAD
 function normalizeWorkItemStatus(status) {
   const normalized = String(status || 'open').trim().toLowerCase();
   if (['done', 'closed', 'resolved', 'merged', 'cancelled'].includes(normalized)) return 'done';
@@ -541,12 +558,15 @@ async function readWorkItemsSnapshot(stateDbPath) {
   }
 }
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
 async function buildControlPaneSnapshot(options = {}) {
   const repoRoot = path.resolve(options.repoRoot || path.join(__dirname, '..', '..', '..'));
   const config = options.config
     ? normalizeConfig(options.config, {
         env: options.env || process.env,
         dbPath: options.dbPath || options.config.dbPath || null,
+<<<<<<< HEAD
         stateDbPath: options.stateDbPath || options.config.stateDbPath || null,
       })
     : resolveControlPaneConfig(options);
@@ -556,11 +576,20 @@ async function buildControlPaneSnapshot(options = {}) {
   const limit = Math.max(1, Math.min(Number.parseInt(String(options.limit || 12), 10) || 12, 50));
   const generatedAt = new Date().toISOString();
   const workItems = await readWorkItemsSnapshot(stateDbPath);
+=======
+      })
+    : resolveControlPaneConfig(options);
+  const dbPath = options.dbPath || config.dbPath;
+  const query = String(options.query || '').trim();
+  const limit = Math.max(1, Math.min(Number.parseInt(String(options.limit || 12), 10) || 12, 50));
+  const generatedAt = new Date().toISOString();
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
   const base = {
     schemaVersion: SNAPSHOT_SCHEMA_VERSION,
     generatedAt,
     repoRoot,
     dbPath,
+<<<<<<< HEAD
     stateDbPath,
     database: {
       exists: Boolean(dbPath && fs.existsSync(dbPath)),
@@ -568,6 +597,11 @@ async function buildControlPaneSnapshot(options = {}) {
     stateDatabase: {
       exists: Boolean(stateDbPath && fs.existsSync(stateDbPath)),
     },
+=======
+    database: {
+      exists: Boolean(dbPath && fs.existsSync(dbPath)),
+    },
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     config: {
       configPaths: config.configPaths || [],
       memoryConnectorCount: Object.keys(config.memoryConnectors || {}).length,
@@ -584,7 +618,10 @@ async function buildControlPaneSnapshot(options = {}) {
       results: [],
     },
     connectors: connectorStatus(config, null),
+<<<<<<< HEAD
     workItems,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     actions: buildControlPaneActions({ repoRoot, query, limit }),
   };
 
@@ -625,7 +662,10 @@ module.exports = {
   SNAPSHOT_SCHEMA_VERSION,
   buildControlPaneSnapshot,
   defaultConfigPaths,
+<<<<<<< HEAD
   defaultStateDbPath,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
   recallKnowledgeEntries,
   resolveControlPaneConfig,
 };

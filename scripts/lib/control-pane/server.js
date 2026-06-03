@@ -12,10 +12,16 @@ const { renderControlPaneHtml } = require('./ui');
 function usage() {
   return [
     'Usage:',
+<<<<<<< HEAD
     '  node scripts/control-pane.js [--host 127.0.0.1] [--port 8765] [--db <ecc2.db>] [--state-db <state.db>] [--config <ecc2.toml>] [--query <text>]',
     '',
     'Options:',
     '  --state-db <path>  Read agent work items from an ECC state-store database',
+=======
+    '  node scripts/control-pane.js [--host 127.0.0.1] [--port 8765] [--db <ecc2.db>] [--config <ecc2.toml>] [--query <text>]',
+    '',
+    'Options:',
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     '  --read-only        Disable action execution endpoints',
     '  --no-open          Do not open a browser after the server starts',
     '  --help             Show this help',
@@ -27,6 +33,7 @@ function valueAfter(args, name) {
   return index >= 0 ? args[index + 1] : null;
 }
 
+<<<<<<< HEAD
 function pathValueAfter(args, name) {
   const value = valueAfter(args, name);
   if (value === null) return null;
@@ -36,6 +43,8 @@ function pathValueAfter(args, name) {
   return value;
 }
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
 function parseArgs(argv) {
   const args = argv.slice(2);
   const help = args.includes('--help') || args.includes('-h');
@@ -51,7 +60,10 @@ function parseArgs(argv) {
     host,
     port,
     dbPath: valueAfter(args, '--db'),
+<<<<<<< HEAD
     stateDbPath: pathValueAfter(args, '--state-db'),
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     configPath: valueAfter(args, '--config'),
     query: valueAfter(args, '--query') || '',
     openBrowser: !args.includes('--no-open'),
@@ -155,7 +167,10 @@ function createControlPaneServer(options = {}) {
     cwd: options.cwd || repoRoot,
     configPath: options.configPath,
     dbPath: options.dbPath,
+<<<<<<< HEAD
     stateDbPath: options.stateDbPath,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     env: options.env || process.env,
   });
   const baseQuery = options.query || '';
@@ -184,7 +199,10 @@ function createControlPaneServer(options = {}) {
           ok: true,
           repoRoot,
           dbPath: resolvedConfig.dbPath,
+<<<<<<< HEAD
           stateDbPath: resolvedConfig.stateDbPath,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
           allowActions,
         });
         return;
@@ -194,7 +212,10 @@ function createControlPaneServer(options = {}) {
         const snapshot = await buildControlPaneSnapshot({
           repoRoot,
           dbPath: resolvedConfig.dbPath,
+<<<<<<< HEAD
           stateDbPath: resolvedConfig.stateDbPath,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
           config: resolvedConfig,
           query: requestUrl.searchParams.get('query') || baseQuery,
           limit: requestUrl.searchParams.get('limit') || 12,

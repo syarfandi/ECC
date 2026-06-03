@@ -215,7 +215,10 @@ function renderControlPaneHtml() {
 
     .result,
     .connector,
+<<<<<<< HEAD
     .work-item,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     .action {
       padding: 12px 14px;
       border-bottom: 1px solid rgba(52, 64, 56, 0.7);
@@ -225,11 +228,15 @@ function renderControlPaneHtml() {
 
     .result:last-child,
     .connector:last-child,
+<<<<<<< HEAD
     .work-item:last-child,
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     .action:last-child {
       border-bottom: 0;
     }
 
+<<<<<<< HEAD
     .kanban {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -261,6 +268,8 @@ function renderControlPaneHtml() {
       line-height: 1;
     }
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     .row {
       display: flex;
       justify-content: space-between;
@@ -343,7 +352,10 @@ function renderControlPaneHtml() {
     @media (max-width: 560px) {
       main { padding: 12px; }
       .metrics { grid-template-columns: 1fr; }
+<<<<<<< HEAD
       .kanban { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
       .query { flex-direction: column; }
       th:nth-child(4), td:nth-child(4) { display: none; }
     }
@@ -372,6 +384,7 @@ function renderControlPaneHtml() {
           </div>
           <div id="sessions"></div>
         </section>
+<<<<<<< HEAD
         <section>
           <div class="section-head">
             <h2>Work Items</h2>
@@ -379,6 +392,8 @@ function renderControlPaneHtml() {
           </div>
           <div id="work-items"></div>
         </section>
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
       </div>
       <div class="stack">
         <section>
@@ -454,6 +469,7 @@ function renderControlPaneHtml() {
 
     function statePill(stateName) {
       const state = String(stateName || 'unknown');
+<<<<<<< HEAD
       const klass = ['running', 'done'].includes(state)
         ? 'good'
         : ['failed', 'blocked'].includes(state)
@@ -461,6 +477,9 @@ function renderControlPaneHtml() {
           : ['pending', 'ready'].includes(state)
             ? 'warn'
             : 'blue';
+=======
+      const klass = state === 'running' ? 'good' : state === 'failed' ? 'bad' : state === 'pending' ? 'warn' : 'blue';
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
       return '<span class="pill ' + klass + '">' + escapeHtml(state) + '</span>';
     }
 
@@ -493,6 +512,7 @@ function renderControlPaneHtml() {
       '</tbody></table>';
     }
 
+<<<<<<< HEAD
     function renderWorkItems(workItems) {
       const summary = workItems || { totalCount: 0, openCount: 0, blockedCount: 0, doneCount: 0, kanban: {}, items: [] };
       const items = Array.isArray(summary.items) ? summary.items : [];
@@ -524,6 +544,8 @@ function renderControlPaneHtml() {
       }).join('');
     }
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     function renderKnowledge(knowledge) {
       $('#knowledge-count').textContent = knowledge.entityCount + ' entities';
       if (!knowledge.results.length) {
@@ -604,7 +626,10 @@ function renderControlPaneHtml() {
       $('#action-status').textContent = snapshot.execution.allowActions ? 'local allowlist' : 'read-only';
       renderMetrics(snapshot.summary);
       renderSessions(snapshot.sessions);
+<<<<<<< HEAD
       renderWorkItems(snapshot.workItems);
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
       renderKnowledge(snapshot.knowledge);
       renderConnectors(snapshot.connectors);
       renderActions(snapshot.actions.map(action => ({

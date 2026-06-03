@@ -148,8 +148,11 @@ async function runTests() {
       '8788',
       '--db',
       '/tmp/ecc2.db',
+<<<<<<< HEAD
       '--state-db',
       '/tmp/ecc-state.db',
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
       '--query',
       'Hermes memory',
       '--no-open',
@@ -158,7 +161,10 @@ async function runTests() {
     assert.strictEqual(parsed.host, '127.0.0.1');
     assert.strictEqual(parsed.port, 8788);
     assert.strictEqual(parsed.dbPath, '/tmp/ecc2.db');
+<<<<<<< HEAD
     assert.strictEqual(parsed.stateDbPath, '/tmp/ecc-state.db');
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
     assert.strictEqual(parsed.query, 'Hermes memory');
     assert.strictEqual(parsed.openBrowser, false);
   })) passed++; else failed++;
@@ -174,6 +180,7 @@ async function runTests() {
     );
   })) passed++; else failed++;
 
+<<<<<<< HEAD
   if (await test('rejects missing state database path values', async () => {
     assert.throws(
       () => parseArgs(['node', 'scripts/control-pane.js', '--state-db']),
@@ -185,6 +192,8 @@ async function runTests() {
     );
   })) passed++; else failed++;
 
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
   if (await test('serves HTML and snapshot JSON from a temp ECC2 database', async () => {
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ecc-control-pane-server-'));
     const dbPath = path.join(tempDir, 'ecc2.db');
@@ -205,15 +214,21 @@ async function runTests() {
         const html = await fetchLocal(`${app.url}/`).then(response => response.text());
         assert.ok(html.includes('ECC Control Pane'));
         assert.ok(html.includes('id="app"'));
+<<<<<<< HEAD
         assert.ok(html.includes('id="work-items"'));
         assert.ok(html.includes('function renderWorkItems'));
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
         assert.ok(html.includes('function showError'));
         assert.ok(html.includes('response.ok'));
 
         const snapshot = await fetchLocal(`${app.url}/api/snapshot?query=control`).then(response => response.json());
         assert.strictEqual(snapshot.schemaVersion, 'ecc.control-pane.snapshot.v1');
         assert.strictEqual(snapshot.summary.totalSessions, 1);
+<<<<<<< HEAD
         assert.strictEqual(snapshot.workItems.totalCount, 0);
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
         assert.strictEqual(snapshot.sessions[0].id, 'session-a');
       } finally {
         await app.close();

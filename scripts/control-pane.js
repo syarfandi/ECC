@@ -34,7 +34,10 @@ async function main(argv = process.argv) {
 
   console.log(`ECC Control Pane: ${app.url}`);
   console.log(`ECC2 database: ${app.config.dbPath}`);
+<<<<<<< HEAD
   console.log(`ECC state database: ${app.config.stateDbPath}`);
+=======
+>>>>>>> 0f84c0e2 (feat: add ECC2 local control pane (#2131))
   console.log(args.allowActions ? 'Actions: enabled for local allowlist' : 'Actions: read-only');
 
   if (args.openBrowser) {
