@@ -413,7 +413,6 @@ devlop@^1.0.0:
     typescript: "npm:^6.0.3"
   bin:
     ecc: scripts/ecc.js
-    ecc-control-pane: scripts/control-pane.js
     ecc-install: scripts/install-apply.js
   languageName: unknown
   linkType: soft
